@@ -3,6 +3,8 @@ package objectdb_proyecto1;
 import javax.persistence.*;
 import java.util.*;
 
+//SI ALGUNA BD SE NOS CORROMPE, ELIMINARLA DIRECTAMENTE EN LA CARPETA DONDE ESTÉ ALMACENADA Y 
+//VOLVER A CREARLA
 public class ObjectDB_proyecto1 {
 
     public static void main(String[] args) {
@@ -36,6 +38,29 @@ public class ObjectDB_proyecto1 {
             System.out.println(p);
         }
 
+        //SELECCIONAR UN OBJETO EN CONCRETO
+        //USAMOS "getSIngleResult" CUANDO SABEMOS QUE SOLO VAMOS A MOSTRAR UN RESULTADO (EN ESTE CASO UN OBJETO)
+        //
+        System.out.println("SELECCIONAR UN OBJETO CONCRETO: ");
+
+        Query q3 = em.createQuery("select p from Point as p where p.id = 3");
+        System.out.println(q3.getSingleResult());
+
+        //MODIFICAR UN OBJETO:
+        //PRIMERO LO SELECCIONAMOS Y MOSTRAMOS:
+        System.out.println("SELECCIONAR Y MODIFICAR UN OBJETO CONCRETO: ");
+        Query q4 = em.createQuery("select p from Point as p where p.id = 5");
+        System.out.println(q4.getSingleResult());
+        //LO ALMACENAMOS EN UNA VARIABLE DE LA CLASE PORQUE ES UN OBJETO !!!(AÑADIMOS SETTERS EN LA CLASE !!!)
+        Point punto = (Point) q4.getSingleResult();
+        //LO MODIFICAMOS COMO UN OBJETO DE JAVA
+        punto.setX(999);
+
+        //COMPROBAMOS:
+        System.out.println(q4.getSingleResult());
+
+        //MODIFICACIÓN MASIVA DE TODOS OBJETOS:
+        //MODIFICACIÓN DE VARIOS OBJETOS:
         // Close the database connection:
         em.close();
         emf.close();
