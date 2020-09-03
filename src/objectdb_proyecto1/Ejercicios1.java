@@ -32,7 +32,7 @@ public class Ejercicios1 {
         System.out.println("MOSTRAMOS PUNTOS");
 
         EntityManager em = emf.createEntityManager();
-
+        //SELECCIONAMOS TODOS LOS OBJETOS DE LA BD COMO "p"
         TypedQuery<Point> query
                 = em.createQuery("SELECT p FROM Point p", Point.class);
         //EN ESTA LISTA OBTENEMOS OBJETOS DE TIPO POINT !!!
